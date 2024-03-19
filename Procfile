@@ -1,0 +1,1 @@
+web: ./build/install/Treasure of the Sands - server/bin/Treasure of the Sands - server
