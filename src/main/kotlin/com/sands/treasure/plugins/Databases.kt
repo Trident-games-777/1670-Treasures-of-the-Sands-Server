@@ -13,7 +13,7 @@ fun Application.configureDatabases() {
 //    )
 
     val driverClassName = "org.h2.Driver"
-    val jdbcURL = "jdbc:h2:file:./build/treasure"
+    val jdbcURL = "jdbc:h2:file:./build/treasure;DB_CLOSE_DELAY=-1"
     val database = Database.connect(jdbcURL, driverClassName)
 
     val playerService = PlayerService(database)
