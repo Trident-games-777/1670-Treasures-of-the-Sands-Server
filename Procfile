@@ -1,1 +1,1 @@
-web: ./build/install/Treasure of the Sands - server/bin/Treasure of the Sands - server
+web: ./build/install/treasure.of.the.sands/bin/treasure.of.the.sands

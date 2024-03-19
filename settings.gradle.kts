@@ -1,1 +1,1 @@
-rootProject.name = "Treasure of the Sands - server"
+rootProject.name = "treasure.of.the.sands"
