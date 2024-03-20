@@ -1,30 +1,27 @@
 package com.sands.treasure.plugins
 
+import com.mongodb.kotlin.client.coroutine.MongoClient
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import org.jetbrains.exposed.sql.*
 
 fun Application.configureDatabases() {
-//    val database = Database.connect(
-//        url = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1", user = "root", driver = "org.h2.Driver", password = ""
-//    )
 
-    val driverClassName = "org.h2.Driver"
-    val jdbcURL = "jdbc:h2:file:./build/treasure;DB_CLOSE_DELAY=-1"
-    val database = Database.connect(jdbcURL, driverClassName)
-
+    val connectionString =
+        "mongodb+srv://yevhenmoiseiev:mais1208@cluster0.rilg0du.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    val client = MongoClient.create(connectionString = connectionString)
+    val database = client.getDatabase(databaseName = "TreasurePlayers")
     val playerService = PlayerService(database)
+
     routing {
         // Create user
         post("/players") {
             val player = call.receive<Player>()
-            println("Receive player = $player")
             val id = playerService.create(player)
             println("Save player: $player")
-            call.respond(HttpStatusCode.Created, id)
+            call.respond(HttpStatusCode.Created)
         }
 
         get("/players"){
@@ -49,6 +46,5 @@ fun Application.configureDatabases() {
             playerService.update(id, player)
             call.respond(HttpStatusCode.OK)
         }
-
     }
 }

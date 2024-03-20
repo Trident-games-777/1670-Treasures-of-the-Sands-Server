@@ -1,6 +1,8 @@
 package com.sands.treasure
 
-import com.sands.treasure.plugins.*
+import com.sands.treasure.plugins.configureDatabases
+import com.sands.treasure.plugins.configureRouting
+import com.sands.treasure.plugins.configureSerialization
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
